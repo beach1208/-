@@ -24,7 +24,7 @@ jobs:
     steps:
       - run:
           command: |
-            TESTFILES=$(circleci tests glob "__test__/**/*.spec.{sh}" | circleci tests split --split-by=timings)
+            TESTFILES=$(circleci tests glob "src/*.sh" | circleci tests split --split-by=timings)
             npm test $TESTFILES
       - run:
           name: Run Hello test
