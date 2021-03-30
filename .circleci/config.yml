@@ -20,9 +20,12 @@ jobs:
   test:
     docker:
       - image: circleci/node
+    parallelism: 2
     steps:
-      - checkout
-      # These two tests should run in parallel. Make it so!
+      - run:
+          command: |
+            TESTFILES=$(circleci tests glob "__test__/**/*.spec.{sh}" | circleci tests split --split-by=timings)
+            npm test $TESTFILES
       - run:
           name: Run Hello test
           command: |
