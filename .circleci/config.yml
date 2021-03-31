@@ -8,8 +8,8 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - ruby/install:
-          version: '2.3.8'
+      # - ruby/install:
+      #     version: '2.3.8'
       - run: ruby -v
       - run:
           name: "'run' statements can actually contain a 'name' and 'command' argument as well"
