@@ -1,6 +1,6 @@
 version: 2
 orbs:
-  ruby: circleci/ruby@2.3.8
+  ruby: circleci/ruby@1.1.2
 
 jobs:
   build:
@@ -8,9 +8,9 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - ruby/ruby:
-          version: '2.3.8'
-      - run: echo "RCircluby 2.3.8 has been installed"
+      - ruby/install:
+          version: '2.7'
+      - run: echo "Ruby 2.7 has been installed"
       - run:
           name: "'run' statements can actually contain a 'name' and 'command' argument as well"
           command: echo "You can even have multiline commands."
