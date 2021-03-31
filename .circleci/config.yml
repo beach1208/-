@@ -1,10 +1,16 @@
 version: 2
+orbs:
+  ruby: circleci/ruby@2.3.8
+
 jobs:
   build:
     docker: 
-      - image: circleci/node
+      - image: cimg/base:stable
     steps:
       - checkout
+      - ruby/install:
+          version: '2.3.8'
+      - run: ruby -v
       - run:
           name: "'run' statements can actually contain a 'name' and 'command' argument as well"
           command: echo "You can even have multiline commands."
@@ -17,27 +23,9 @@ jobs:
           key: v1-dependencies-
           paths:
             - /cache
-  test:
-    docker:
-      - image: circleci/node
-    parallelism: 2
-    steps:
-      - run:
-          command: |
-            TESTFILES=$(circleci tests glob "**/*.sh" | circleci tests split --split-by=timings)
-            npm test $TESTFILES
-      - run:
-          name: Run Hello test
-          command: |
-            bash src/test_hello.sh
-      - run:
-          name: Run Goodbye test
-          command: |
-            bash src/test_goodbye.sh
 
 workflows:
   version: 2
   test:
     jobs:
       - build
-      - test
