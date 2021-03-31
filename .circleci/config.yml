@@ -8,9 +8,9 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      # - ruby/install:
-      #     version: '2.3.8'
-      - run: echo "Ruby 2.3.8 has been installed"
+      - ruby/ruby:
+          version: '2.3.8'
+      - run: echo "RCircluby 2.3.8 has been installed"
       - run:
           name: "'run' statements can actually contain a 'name' and 'command' argument as well"
           command: echo "You can even have multiline commands."
